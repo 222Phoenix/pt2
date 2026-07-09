@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>LECO Colors</h2>
+
+Text:
+<input type="color" id="text" value="#000000">
+
+<br><br>
+
+Background:
+<input type="color" id="bg" value="#ffffff">
+
+<br><br>
+
+<button onclick="save()">Save</button>
+
+
+<script>
+
+function save() {
+
+var settings = {
+
+text_color:
+document.getElementById("text").value,
+
+background_color:
+document.getElementById("bg").value
+
+};
+
+
+location.href =
+"pebblejs://close#" +
+encodeURIComponent(
+JSON.stringify(settings));
+
+}
+
+</script>
+
+</body>
+</html>
