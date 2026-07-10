@@ -31,22 +31,23 @@ function save() {
 
 var settings = {
 
-text_color:
-document.getElementById("text").value,
+  text_color:
+    document.getElementById("text").value,
 
-background_color:
-document.getElementById("bg").value
+  background_color:
+    document.getElementById("bg").value,
 
-invert_every_minute:
-    document.getElementById("invert").checked ? 1 : 0  
+  invert_every_minute:
+    document.getElementById("invert").checked ? 1 : 0
 
 };
 
 
 location.href =
-"pebblejs://close#" +
-encodeURIComponent(
-JSON.stringify(settings));
+  "pebblejs://close#" +
+  encodeURIComponent(
+    JSON.stringify(settings)
+  );
 
 }
 
