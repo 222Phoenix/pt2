@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html>
 <body>
@@ -20,40 +21,45 @@ Background Color:
 </label>
 
 <br><br>
-  
+
 <div style="text-align:center;">
   <button onclick="save()">Save</button>
 </div>
-  
+
 <script>
 
-function getQueryParam(name) {
-  var params = new URLSearchParams(window.location.search);
-  return params.get(name);
-}
+window.onload = function() {
 
-// Load previous settings
-var settings = getQueryParam("settings");
+  var saved = localStorage.getItem("settings");
 
-if (settings) {
-  try {
-    settings = JSON.parse(decodeURIComponent(settings));
+  if (saved) {
+    try {
+      var settings = JSON.parse(saved);
 
-    document.getElementById("text").value =
-      settings.text_color || "#000000";
+      document.getElementById("text").value =
+        settings.text_color || "#000000";
 
-    document.getElementById("bg").value =
-      settings.background_color || "#ffffff";
+      document.getElementById("bg").value =
+        settings.background_color || "#ffffff";
 
-    document.getElementById("invert").checked =
-      settings.invert_every_minute == 1;
+      document.getElementById("invert").checked =
+        settings.invert_every_minute == 1;
 
-  } catch(e) {
-    console.log("Could not load settings");
+    } catch(e) {
+      setDefaults();
+    }
+
+  } else {
+    setDefaults();
   }
-} else {
+
+};
+
+
+function setDefaults() {
   document.getElementById("text").value = "#000000";
   document.getElementById("bg").value = "#ffffff";
+  document.getElementById("invert").checked = false;
 }
 
 
@@ -73,6 +79,12 @@ function save() {
   };
 
 
+  localStorage.setItem(
+    "settings",
+    JSON.stringify(settings)
+  );
+
+
   location.href =
     "pebblejs://close#" +
     encodeURIComponent(
@@ -85,3 +97,4 @@ function save() {
 
 </body>
 </html>
+```
