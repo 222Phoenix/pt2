@@ -5,49 +5,79 @@
 <h2 class="centered-heading">Settings</h2>
 
 Text Color:
-<input type="color" id="text" value="#000000">
+<input type="color" id="text">
 
 <br><br>
 
 Background Color:
-<input type="color" id="bg" value="#ffffff">
+<input type="color" id="bg">
 
 <br><br>
-  
+
 <label>
   <input type="checkbox" id="invert">
   Invert every minute
 </label>
 
 <br><br>
-
+  
 <div style="text-align:center;">
   <button onclick="save()">Save</button>
 </div>
   
 <script>
 
+function getQueryParam(name) {
+  var params = new URLSearchParams(window.location.search);
+  return params.get(name);
+}
+
+// Load previous settings
+var settings = getQueryParam("settings");
+
+if (settings) {
+  try {
+    settings = JSON.parse(decodeURIComponent(settings));
+
+    document.getElementById("text").value =
+      settings.text_color || "#000000";
+
+    document.getElementById("bg").value =
+      settings.background_color || "#ffffff";
+
+    document.getElementById("invert").checked =
+      settings.invert_every_minute == 1;
+
+  } catch(e) {
+    console.log("Could not load settings");
+  }
+} else {
+  document.getElementById("text").value = "#000000";
+  document.getElementById("bg").value = "#ffffff";
+}
+
+
 function save() {
 
-var settings = {
+  var settings = {
 
-  text_color:
-    document.getElementById("text").value,
+    text_color:
+      document.getElementById("text").value,
 
-  background_color:
-    document.getElementById("bg").value,
+    background_color:
+      document.getElementById("bg").value,
 
-  invert_every_minute:
-    document.getElementById("invert").checked ? 1 : 0
+    invert_every_minute:
+      document.getElementById("invert").checked ? 1 : 0
 
-};
+  };
 
 
-location.href =
-  "pebblejs://close#" +
-  encodeURIComponent(
-    JSON.stringify(settings)
-  );
+  location.href =
+    "pebblejs://close#" +
+    encodeURIComponent(
+      JSON.stringify(settings)
+    );
 
 }
 
