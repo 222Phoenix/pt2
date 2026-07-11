@@ -16,8 +16,8 @@ Background Color:
 <br><br>
 
 <label>
-  <input type="checkbox" id="invert">
-  Invert every minute
+  Invert interval (seconds):
+  <input type="number" id="invert_seconds" min="1" max="86400" value="60">
 </label>
 
 <br><br>
@@ -42,8 +42,8 @@ window.onload = function() {
       document.getElementById("bg").value =
         settings.background_color || "#ffffff";
 
-      document.getElementById("invert").checked =
-        settings.invert_every_minute == 1;
+document.getElementById("invert_seconds").value =
+  settings.invert_interval || 60;
 
     } catch(e) {
       setDefaults();
@@ -65,6 +65,22 @@ function setDefaults() {
 
 function save() {
 
+  var interval =
+    parseInt(
+      document.getElementById("invert_seconds").value
+    );
+
+
+  if (!interval || interval < 1) {
+    interval = 60;
+  }
+
+
+  if (interval > 86400) {
+    interval = 86400;
+  }
+
+
   var settings = {
 
     text_color:
@@ -73,16 +89,10 @@ function save() {
     background_color:
       document.getElementById("bg").value,
 
-    invert_every_minute:
-      document.getElementById("invert").checked ? 1 : 0
+    invert_interval:
+      interval
 
   };
-
-
-  localStorage.setItem(
-    "settings",
-    JSON.stringify(settings)
-  );
 
 
   location.href =
