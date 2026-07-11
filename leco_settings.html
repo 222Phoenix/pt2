@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html>
 <body>
@@ -17,24 +16,45 @@ Background Color:
 
 <label>
   Invert interval (seconds):
-  <input type="number" id="invert_seconds" min="1" max="86400" value="60">
+  <input type="number" id="invert_seconds" min="1" max="86400">
 </label>
 
 <br><br>
 
 <div style="text-align:center;">
-  <button onclick="save()">Save</button>
+  <button
+    onclick="save()"
+    style="
+      font-size:22px;
+      padding:12px 36px;
+      min-width:180px;
+      min-height:60px;
+      border-radius:10px;
+      cursor:pointer;
+    ">
+    Save
+  </button>
 </div>
 
 <script>
 
+function setDefaults() {
+  document.getElementById("text").value = "#000000";
+  document.getElementById("bg").value = "#ffffff";
+  document.getElementById("invert_seconds").value = 60;
+}
+
 window.onload = function() {
 
-  var saved = localStorage.getItem("settings");
+  var hash = window.location.hash.substring(1);
 
-  if (saved) {
+  if (hash) {
+
     try {
-      var settings = JSON.parse(saved);
+
+      var settings = JSON.parse(
+        decodeURIComponent(hash)
+      );
 
       document.getElementById("text").value =
         settings.text_color || "#000000";
@@ -42,44 +62,40 @@ window.onload = function() {
       document.getElementById("bg").value =
         settings.background_color || "#ffffff";
 
-document.getElementById("invert_seconds").value =
-  settings.invert_interval || 60;
+      document.getElementById("invert_seconds").value =
+        settings.invert_interval || 60;
 
-    } catch(e) {
+    } catch (e) {
+
+      console.log("Could not load settings");
       setDefaults();
+
     }
 
   } else {
+
     setDefaults();
+
   }
 
 };
-
-
-function setDefaults() {
-  document.getElementById("text").value = "#000000";
-  document.getElementById("bg").value = "#ffffff";
-  document.getElementById("invert").checked = false;
-}
 
 
 function save() {
 
   var interval =
     parseInt(
-      document.getElementById("invert_seconds").value
+      document.getElementById("invert_seconds").value,
+      10
     );
 
-
-  if (!interval || interval < 1) {
+  if (isNaN(interval) || interval < 1) {
     interval = 60;
   }
-
 
   if (interval > 86400) {
     interval = 86400;
   }
-
 
   var settings = {
 
@@ -94,7 +110,6 @@ function save() {
 
   };
 
-
   location.href =
     "pebblejs://close#" +
     encodeURIComponent(
@@ -107,4 +122,3 @@ function save() {
 
 </body>
 </html>
-```
