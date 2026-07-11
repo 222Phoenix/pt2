@@ -6,29 +6,28 @@ Hello, fellow pebbler! Thanks for trying me.
 I'm not a programmer, so there may be bugs. Made with ChatGPT. 
 I encourage you to create your own face with AI. If I can do it, you can too!
   
-Text Color:
+- Text Color:
 <input type="color" id="text">
 
 <br><br>
 
-Background Color:
+- Background Color:
 <input type="color" id="bg">
 
 
-<p>
+<label>
+  - Invert interval (seconds):
+  <input type="number" id="invert_seconds" min="1" max="86400">
+</label>
+
+<div style="margin-left:24px;">
   Second Values:<br>
   1 → every second (warning: high battery usage)<br>
   60 → every minute<br>
   3600 → every hour<br>
-  86400 → every day<br>
-</p>
-
+  86400 → every day
+</div>  
   
-<label>
-  Invert interval (seconds):
-  <input type="number" id="invert_seconds" min="1" max="86400">
-</label>
-
 <br><br>
 
 <div style="text-align:center;">
