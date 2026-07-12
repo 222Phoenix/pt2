@@ -9,6 +9,8 @@
   Hello, fellow pebbler! Thanks for trying me. <br>
   I'm not a programmer, so there may be bugs. Made with ChatGPT. <br>
   I encourage you to create your own face with AI. If I can do it, you can too! <br>
+  <br>
+  The face inverts every minute by default. e.g. black letters on white background, then white letters on black background, and so on. <br>
 </p>
  
   <br><br>
@@ -23,16 +25,17 @@
 <br><br>
 
 <div>
-  - Invert interval (seconds):
-  <input type="number" id="invert_seconds" min="1" max="86400">
+  - Invert interval (in seconds):
+  <input type="number" id="invert_seconds" min="0" max="86400">
 </div>
   <br><br>
 <div style="margin-left:24px;">
   Second Values:<br>
+  0 → disable invert<br>
   1 → every second (warning: high battery usage)<br>
   60 → every minute<br>
   3600 → every hour<br>
-  86400 → every day
+  86400 → every day (maximum value)<br>
 </div>  
   
 <br><br>
@@ -105,7 +108,7 @@ function save() {
       10
     );
 
-  if (isNaN(interval) || interval < 1) {
+  if (isNaN(interval) || interval < 0) {
     interval = 60;
   }
 
