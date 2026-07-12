@@ -6,11 +6,10 @@
 
 <p>
   <br>
-  Hello, fellow pebbler! Thanks for trying me. <br>
-  I'm not a programmer, so there may be bugs. Made with ChatGPT. <br>
-  I encourage you to create your own face with AI. If I can do it, you can too! <br>
-  <br>
-  The face inverts every minute by default. e.g. black letters on white background, then white letters on black background, and so on. <br>
+  The face switches text and background colors every minute by default. <br>
+  For example, it'll start with white text on a black background. <br>
+  At the next minute change, it'll turn into black text on a white background. <br>
+  It'll keep switching every minute unless you configure it othewise. <br>
 </p>
  
   <br><br>
@@ -80,9 +79,11 @@ window.onload = function() {
 
       document.getElementById("bg").value =
         settings.background_color || "#ffffff";
-
-      document.getElementById("invert_seconds").value =
-        settings.invert_interval || 60;
+      
+document.getElementById("invert_seconds").value =
+  (settings.invert_interval != null)
+    ? settings.invert_interval
+    : 60;
 
     } catch (e) {
 
