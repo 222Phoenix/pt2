@@ -23,19 +23,36 @@
 
 <br><br>
 
-<div>
-  - Invert Frequency (in seconds):
-  <input type="number" id="invert_seconds" min="0" max="86400">
-</div>
-  <br><br>
-<div style="margin-left:24px;">
-  Second Values:<br>
-  0 → disable invert<br>
-  1 → invert every second (warning: high battery usage)<br>
-  60 → invert every minute (default, battery seems ok)<br>
-  3600 → invert every hour<br>
-  86400 → invert every day (max value)<br>
-</div>  
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Seconds</th>
+      <th style="text-align:left;">Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td style="text-align:left;">Disable invert</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td style="text-align:left;">Invert every second (warning: high battery usage)</td>
+    </tr>
+    <tr>
+      <td>60</td>
+      <td style="text-align:left;">Invert every minute (default, battery seems OK)</td>
+    </tr>
+    <tr>
+      <td>3600</td>
+      <td style="text-align:left;">Invert every hour</td>
+    </tr>
+    <tr>
+      <td>86400</td>
+      <td style="text-align:left;">Invert every 24 hours (maximum value)</td>
+    </tr>
+  </tbody>
+</table>
   
 <br><br>
 
