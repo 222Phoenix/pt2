@@ -3,11 +3,6 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-  tr.spaced td {
-    padding-bottom: 14px;
-  }
-</style>
 </head>
 
 <body style="background:#DFF8EB; font-family:Arial, sans-serif; margin:0; padding:12px;">
@@ -32,6 +27,7 @@
     style="width:60px;height:40px;">
 </div>
 
+  
 <div style="margin-bottom:20px;">
   <label for="invert_seconds">
     Invert Interval (seconds):
@@ -122,7 +118,7 @@
 function setDefaults() {
   document.getElementById("text").value = "#000000";
   document.getElementById("bg").value = "#ffffff";
-  document.getElementById("invert_seconds").value = 60;
+  document.getElementById("invert_seconds").value = 60;  
 }
 
 window.onload = function() {
@@ -147,6 +143,7 @@ window.onload = function() {
         (settings.invert_interval != null)
           ? settings.invert_interval
           : 60;
+      
 
     } catch (e) {
 
