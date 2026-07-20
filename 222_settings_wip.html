@@ -11,10 +11,10 @@
   xTESTx By default, this face switches text and background colors every minute unless you choose otherwise.
 </p>
 <br><br>
-<p>
-</p>
+
+<div style="margin-bottom:20px;">
+<label for="font">Border Font:</label><br>
 <select id="font" style="display:block;width:150px;height:40px;">
-    <label for="text">Border Font:</label><br>
     <option value="0">Gothic</option>
     <option value="1">Bebas</option>
     <option value="2">Roboto</option>
@@ -126,7 +126,7 @@
 <script>
 
 function setDefaults() {
-  document.getElementById("font").value = "1";
+  document.getElementById("font").value = "0";
   document.getElementById("text").value = "#000000";
   document.getElementById("bg").value = "#ffffff";
   document.getElementById("invert_seconds").value = 60;  
