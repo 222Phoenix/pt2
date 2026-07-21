@@ -13,6 +13,14 @@
 <br><br>
 
 <div style="margin-bottom:20px;">
+  <label for="time_font">Time Font:</label><br>
+  <select id="time_font" style="display:block;width:150px;height:40px;">
+    <option value="0">Oxanium</option>
+    <option value="1">Bebas</option>
+  </select>
+</div>
+  
+<div style="margin-bottom:20px;">
   <label for="font">Border Font:</label><br>
   <select id="font" style="display:block;width:150px;height:40px;">
       <option value="0">Bebas</option>
@@ -127,6 +135,7 @@
 <script>
 
 function setDefaults() {
+  document.getElementById("time_font").value = "0";
   document.getElementById("font").value = "0";
   document.getElementById("text").value = "#000000";
   document.getElementById("bg").value = "#ffffff";
@@ -144,12 +153,16 @@ window.onload = function() {
       var settings = JSON.parse(
         decodeURIComponent(hash)
       );
-
       
       document.getElementById("font").value =
         (settings.font != null)
         ? settings.font
         : "1";
+      
+      document.getElementById("time_font").value =
+        (settings.time_font != null)
+        ? settings.time_font
+        : "0";
       
       document.getElementById("text").value =
         settings.text_color || "#000000";
@@ -197,6 +210,8 @@ function save() {
   var settings = {
 
     font: Number(document.getElementById("font").value),
+
+    time_font: Number(document.getElementById("time_font").value),
     
     text_color:
       document.getElementById("text").value,
