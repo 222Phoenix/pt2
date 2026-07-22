@@ -11,6 +11,27 @@
   By default, this face switches text and background colors every minute unless you choose otherwise.
 </p>
 <br><br>
+
+<div style="margin-bottom:20px;">
+  <label for="time_font">Time Font:</label><br>
+  <select id="time_font" style="display:block;width:150px;height:40px;">
+    <option value="0">Oxanium</option>
+    <option value="1">Bebas</option>
+    <option value="2">All Things</option>
+    <option value="3">White Chalk</option>
+  </select>
+</div>
+  
+<div style="margin-bottom:20px;">
+  <label for="font">Border Font:</label><br>
+  <select id="font" style="display:block;width:150px;height:40px;">
+      <option value="0">Bebas</option>
+      <option value="1">Gothic</option>
+      <option value="2">Roboto</option>
+      <option value="3">Leco</option>
+  </select>
+</div>
+
 <div style="margin-bottom:20px;">
   <label for="text">Text Color:</label><br>
   <input
@@ -116,6 +137,8 @@
 <script>
 
 function setDefaults() {
+  document.getElementById("time_font").value = "0";
+  document.getElementById("font").value = "0";
   document.getElementById("text").value = "#000000";
   document.getElementById("bg").value = "#ffffff";
   document.getElementById("invert_seconds").value = 60;  
@@ -132,7 +155,17 @@ window.onload = function() {
       var settings = JSON.parse(
         decodeURIComponent(hash)
       );
-
+      
+      document.getElementById("font").value =
+        (settings.font != null)
+        ? settings.font
+        : "1";
+      
+      document.getElementById("time_font").value =
+        (settings.time_font != null)
+        ? settings.time_font
+        : "0";
+      
       document.getElementById("text").value =
         settings.text_color || "#000000";
 
@@ -161,7 +194,7 @@ window.onload = function() {
 };
 
 function save() {
-
+  
   var interval =
     parseInt(
       document.getElementById("invert_seconds").value,
@@ -178,6 +211,10 @@ function save() {
 
   var settings = {
 
+    font: Number(document.getElementById("font").value),
+
+    time_font: Number(document.getElementById("time_font").value),
+    
     text_color:
       document.getElementById("text").value,
 
