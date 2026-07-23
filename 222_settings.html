@@ -13,6 +13,14 @@
 <br><br>
 
 <div style="margin-bottom:20px;">
+  <label for="layout">Layout:</label><br>
+  <select id="layout" style="display:block;width:150px;height:40px;">
+    <option value="0">Regular</option>
+    <option value="1">Alternate</option>
+  </select>
+</div>
+  
+<div style="margin-bottom:20px;">
   <label for="time_font">Time Font:</label><br>
   <select id="time_font" style="display:block;width:150px;height:40px;">
     <option value="0">Oxanium</option>
@@ -137,6 +145,7 @@
 <script>
 
 function setDefaults() {
+  document.getElementById("layout").value = "0";
   document.getElementById("time_font").value = "0";
   document.getElementById("font").value = "0";
   document.getElementById("text").value = "#000000";
@@ -155,6 +164,11 @@ window.onload = function() {
       var settings = JSON.parse(
         decodeURIComponent(hash)
       );
+
+      document.getElementById("layout").value =
+        (settings.layout != null)
+        ? settings.layout
+        : "0";
       
       document.getElementById("font").value =
         (settings.font != null)
@@ -211,6 +225,8 @@ function save() {
 
   var settings = {
 
+    layout: Number(document.getElementById("layout").value),
+    
     font: Number(document.getElementById("font").value),
 
     time_font: Number(document.getElementById("time_font").value),
