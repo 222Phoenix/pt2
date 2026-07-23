@@ -8,7 +8,7 @@
 <body style="background:#DFF8EB; font-family:Arial, sans-serif; margin:0; padding:12px;">
 
 <p>
-  By default, this face switches text and background colors every minute unless you choose otherwise.
+  No more inverts. still small font, large font, bg, text color. no layout. add seconds color. 
 </p>
 <br><br>
 
@@ -49,77 +49,7 @@
 </div>
 
   
-<div style="margin-bottom:20px;">
-  <label for="invert_seconds">
-    Invert Interval (seconds):
-  </label><br>
 
-  <input
-    type="number"
-    id="invert_seconds"
-    min="0"
-    max="86400"
-    step="1"
-    value="60"
-    style="width:120px;font-size:18px;padding:4px;">
-</div>
-
-<table
-  border="1"
-  cellpadding="6"
-  cellspacing="0"
-  style="margin:0 auto;border-collapse:collapse;">
-
-  <thead>
-    <tr>
-      <th style="text-align:center; height:40px;">Seconds</th>
-      <th style="text-align:left;">Behavior</th>
-    </tr>
-  </thead>
-
-  <tbody>
-
-    <tr>
-      <td style="text-align:center; height:40px;">0</td>
-      <td style="text-align:left;">
-        Disable invert
-      </td>
-    </tr>
-
-    <tr>
-      <td style="text-align:center; height:40px;">1</td>
-      <td style="text-align:left;">
-        Invert every second<br>
-        <small>(high battery usage)</small>
-      </td>
-    </tr>
-
-    <tr>
-      <td style="text-align:center; height:40px;">60</td>
-      <td style="text-align:left;">
-        Invert every minute<br>
-        <small>(default)</small>
-      </td>
-    </tr>
-
-    <tr>
-      <td style="text-align:center; height:40px;">3600</td>
-      <td style="text-align:left;">
-        Invert every hour
-      </td>
-    </tr>
-
-    <tr>
-      <td style="text-align:center; height:40px;">86400</td>
-      <td style="text-align:left;">
-        Invert every 24 hours<br>
-        <small>(maximum)</small>
-      </td>
-    </tr>
-
-  </tbody>
-
-</table>
 
 <div style="margin-top:24px;">
   <button
@@ -141,7 +71,6 @@ function setDefaults() {
   document.getElementById("font").value = "0";
   document.getElementById("text").value = "#000000";
   document.getElementById("bg").value = "#ffffff";
-  document.getElementById("invert_seconds").value = 60;  
 }
 
 window.onload = function() {
@@ -171,11 +100,6 @@ window.onload = function() {
 
       document.getElementById("bg").value =
         settings.background_color || "#ffffff";
-
-      document.getElementById("invert_seconds").value =
-        (settings.invert_interval != null)
-          ? settings.invert_interval
-          : 60;
       
 
     } catch (e) {
@@ -195,15 +119,6 @@ window.onload = function() {
 
 function save() {
   
-  var interval =
-    parseInt(
-      document.getElementById("invert_seconds").value,
-      10
-    );
-
-  if (isNaN(interval) || interval < 0) {
-    interval = 60;
-  }
 
   if (interval > 86400) {
     interval = 86400;
